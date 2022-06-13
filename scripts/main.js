@@ -1,3 +1,5 @@
+const maxHistory = 10
+let historyReg = []
 
 // Funcion Calculadora
 // recibe String con colores.
@@ -26,12 +28,41 @@ function colorToMultiplier(color) {
     return multiplier
 }
 
+// Guardo los ultimos 10 valores calculados
+function saveHistory(banda1, banda2, banda3) {
+    let data = {
+        date: new Date(),
+        bandas: [banda1, banda2, banda3],
+        resultado: calculoResistencia(banda1, banda2, banda3)
+    }
+
+    historyReg.push(data)
+
+    if(historyReg.length > maxHistory) {
+        historyReg.shift()
+    }
+
+    return data
+}
+
 // Algunos casos de test
 console.log(`El color rojo es ${colorToNumber('rojo')} y multiplica por ${colorToMultiplier('rojo')}`)
 console.log(`El color verde es ${colorToNumber('verde')} y multiplica por ${colorToMultiplier('verde')}`)
 console.log(`El color azul es ${colorToNumber('azul')} y multiplica por ${colorToMultiplier('azul')}`)
 console.log(`El color Marron es ${colorToNumber('Marron')} y multiplica por ${colorToMultiplier('Marron')}`)
 
-console.log(`Resistencia rojo rojo rojo es ${calculoResistencia('rojo','rojo','rojo')} ohms`)
-console.log(`Resistencia azul verde amarillo es ${calculoResistencia('azul','verde','amarillo')} ohms`)
-console.log(`Resistencia marron rojo rojo es ${calculoResistencia('marron','rojo','rojo')} ohms`)
+console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
+console.log(`Resistencia marron rojo rojo es ${saveHistory('marron','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
+console.log(`Resistencia marron rojo rojo es ${saveHistory('marron','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
+console.log(`Resistencia marron rojo rojo es ${saveHistory('marron','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
+console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
+console.log(`Resistencia marron rojo naranja es ${saveHistory('marron','rojo','naranja').resultado} ohms`)
+
+console.log("Registro historico:")
+console.log(historyReg)
