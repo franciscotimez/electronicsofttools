@@ -1,68 +1,65 @@
-const maxHistory = 10
-let historyReg = []
+
+const colors = ['negro', 'marron', 'rojo', 'naranja', 'amarillo', 'verde', 'azul', 'violeta', 'gris', 'blanco'];
+const maxHistory = 5;
+let historyReg = [];
 
 // Funcion Calculadora
 // recibe String con colores.
-function calculoResistencia(banda1, banda2, banda3) {
-    let digito1 = colorToNumber(banda1)
-    let digito2 = colorToNumber(banda2)
-    let multiplier = colorToMultiplier(banda3)
+function calculoResistencia(bandas) {
+    let digito1 = colorToNumber(bandas[0]);
+    let digito2 = colorToNumber(bandas[1]);
+    let multiplier = colorToMultiplier(bandas[2]);
 
-    let resultado = ((digito1 * 10) + digito2) * multiplier
-    return resultado
+    let resultado = ((digito1 * 10) + digito2) * multiplier;
+    return resultado;
 }
 
 // Funcion auxiliar
 // Tranforma colores a numeros
 function colorToNumber(color) {
-    const colors = [ 'negro', 'marron', 'rojo', 'naranja', 'amarillo', 'verde', 'azul', 'violeta', 'gris', 'blanco' ]
-    return colors.indexOf(color.toLowerCase())
+    return colors.indexOf(color.toLowerCase());
 }
 
 // Tranforma colores a multiplicadores
 function colorToMultiplier(color) {
-    let multiplier = 1
+    let multiplier = 1;
     for (let index = 0; index < colorToNumber(color); index++) {
-        multiplier *= 10
+        multiplier *= 10;
     }
-    return multiplier
+    return multiplier;
 }
 
 // Guardo los ultimos 10 valores calculados
-function saveHistory(banda1, banda2, banda3) {
+function saveHistory(bandas) {
     let data = {
         date: new Date(),
-        bandas: [banda1, banda2, banda3],
-        resultado: calculoResistencia(banda1, banda2, banda3)
+        bandas: bandas,
+        resultado: calculoResistencia(bandas)
+    };
+
+    historyReg.push(data);
+
+    if (historyReg.length > maxHistory) {
+        historyReg.shift();
     }
 
-    historyReg.push(data)
-
-    if(historyReg.length > maxHistory) {
-        historyReg.shift()
-    }
-
-    return data
+    return data;
 }
 
-// Algunos casos de test
-console.log(`El color rojo es ${colorToNumber('rojo')} y multiplica por ${colorToMultiplier('rojo')}`)
-console.log(`El color verde es ${colorToNumber('verde')} y multiplica por ${colorToMultiplier('verde')}`)
-console.log(`El color azul es ${colorToNumber('azul')} y multiplica por ${colorToMultiplier('azul')}`)
-console.log(`El color Marron es ${colorToNumber('Marron')} y multiplica por ${colorToMultiplier('Marron')}`)
+for (let i = 0; i < maxHistory + 2; i++) {
 
-console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
-console.log(`Resistencia marron rojo rojo es ${saveHistory('marron','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
-console.log(`Resistencia marron rojo rojo es ${saveHistory('marron','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
-console.log(`Resistencia marron rojo rojo es ${saveHistory('marron','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia rojo rojo rojo es ${saveHistory('rojo','rojo','rojo').resultado} ohms`)
-console.log(`Resistencia azul verde amarillo es ${saveHistory('azul','verde','amarillo').resultado} ohms`)
-console.log(`Resistencia marron rojo naranja es ${saveHistory('marron','rojo','naranja').resultado} ohms`)
+    let userInput = prompt(`Ingrese 3 colores de la lista, separados por comas y en cualquier orden: \n${colors}\nEjemplo: marron,negro,rojo\nIngreso numero: ${i + 1}`);
+    
+    let inputArray = userInput.split(',');
+    
+    // Calcula y guarda en el historico
+    let resultado = saveHistory(inputArray);
+    
+    console.log(`Ingreso numero: ${i+1}`);
+    console.log(`Date: ${resultado.date.toLocaleString()}`);
+    console.log(`Colores ingresados: ${resultado.bandas}`);
+    console.log(`Resultado: ${resultado.resultado} [Ohm]`);    
+}
 
-console.log("Registro historico:")
-console.log(historyReg)
+console.log(`Historico de los ultimos ${maxHistory} resultados: `);
+console.log(historyReg);
