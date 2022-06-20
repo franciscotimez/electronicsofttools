@@ -11,98 +11,67 @@
         <title>ElectronicSoftTools</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">ElectronicSoftTools</a>
-                <button 
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarScroll"
-                    aria-controls="navbarScroll"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Resistance</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Inductor</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Solo para test" aria-label="Search">
-                        <button 
-                            class="btn btn-outline-success"
-                            type="submit">Test</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+        <div class="layout">
+            <header>
+                <nav>
+                    <a href="#">ElectronicSoftTools</a>
+
+                </nav>
+            </header>
+        </div>
         <main>
-            <div class="container">
+            <!-- <section id="resistance_calculator">
                 <h2>Calculadora de Resistencia</h2>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_1raB" data-bs-toggle="dropdown" aria-expanded="false">
-                      1ra Banda
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown_1raB">
-                        <li><button class="dropdown-item" type="button">Negro</button></li>
-                        <li><button class="dropdown-item" type="button">Marron</button></li>
-                        <li><button class="dropdown-item" type="button">Rojo</button></li>
-                        <li><button class="dropdown-item" type="button">Naranja</button></li>
-                        <li><button class="dropdown-item" type="button">Amarillo</button></li>
-                        <li><button class="dropdown-item" type="button">Verde</button></li>
-                        <li><button class="dropdown-item" type="button">Azul</button></li>
-                        <li><button class="dropdown-item" type="button">Violeta</button></li>
-                        <li><button class="dropdown-item" type="button">Gris</button></li>
-                        <li><button class="dropdown-item" type="button">Blanco</button></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_2daB" data-bs-toggle="dropdown" aria-expanded="false">
-                      2da Banda
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown_2daB">
-                        <li><button class="dropdown-item" type="button">Negro</button></li>
-                        <li><button class="dropdown-item" type="button">Marron</button></li>
-                        <li><button class="dropdown-item" type="button">Rojo</button></li>
-                        <li><button class="dropdown-item" type="button">Naranja</button></li>
-                        <li><button class="dropdown-item" type="button">Amarillo</button></li>
-                        <li><button class="dropdown-item" type="button">Verde</button></li>
-                        <li><button class="dropdown-item" type="button">Azul</button></li>
-                        <li><button class="dropdown-item" type="button">Violeta</button></li>
-                        <li><button class="dropdown-item" type="button">Gris</button></li>
-                        <li><button class="dropdown-item" type="button">Blanco</button></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown_2daB" data-bs-toggle="dropdown" aria-expanded="false">
-                      Multiplicador
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown_2daB">
-                        <li><button class="dropdown-item" type="button">Negro</button></li>
-                        <li><button class="dropdown-item" type="button">Marron</button></li>
-                        <li><button class="dropdown-item" type="button">Rojo</button></li>
-                        <li><button class="dropdown-item" type="button">Naranja</button></li>
-                        <li><button class="dropdown-item" type="button">Amarillo</button></li>
-                        <li><button class="dropdown-item" type="button">Verde</button></li>
-                        <li><button class="dropdown-item" type="button">Azul</button></li>
-                        <li><button class="dropdown-item" type="button">Violeta</button></li>
-                        <li><button class="dropdown-item" type="button">Gris</button></li>
-                        <li><button class="dropdown-item" type="button">Blanco</button></li>
-                    </ul>
-                </div>
+                <form action="">
+                    <label for="1ra_banda">Primera banda:</label>
+                    <select name="1ra_banda" id="1ra_banda">
+                        <option value="Negro">Negro</option>
+                        <option value="Marron">Marron</option>
+                        <option value="Rojo">Rojo</option>
+                        <option value="Naranja">Naranja</option>
+                        <option value="Amarillo">Amarillo</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Violeta">Violeta</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Blanco">Blanco</option>
+                    </select>
+                    <label for="2da_banda">Segunda banda:</label>
+                    <select name="2da_banda" id="2da_banda">
+                        <option value="Negro">Negro</option>
+                        <option value="Marron">Marron</option>
+                        <option value="Rojo">Rojo</option>
+                        <option value="Naranja">Naranja</option>
+                        <option value="Amarillo">Amarillo</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Violeta">Violeta</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Blanco">Blanco</option>
+                    </select>
+                    <label for="multiplicador">Multiplicador:</label>
+                    <select name="multiplicador" id="multiplicador">
+                        <option value="Negro">Negro</option>
+                        <option value="Marron">Marron</option>
+                        <option value="Rojo">Rojo</option>
+                        <option value="Naranja">Naranja</option>
+                        <option value="Amarillo">Amarillo</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Violeta">Violeta</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Blanco">Blanco</option>
+                    </select>
+                    <input type="submit" value="Calcular">
+                </form>
                 <div>
                     <h3>Resultado: xxx [Ohm]</h3>
                 </div>
-            </div>
+            </section> -->
+            <section>
+                <h2>Historial</h2>
+                <table id="historial"></table>
+            </section>
         </main>
         <!-- Optional JavaScript Bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

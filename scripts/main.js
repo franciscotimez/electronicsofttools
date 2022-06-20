@@ -63,3 +63,32 @@ for (let i = 0; i < maxHistory + 2; i++) {
 
 console.log(`Historico de los ultimos ${maxHistory} resultados: `);
 console.log(historyReg);
+
+// Funcion que crea la tabla HTML
+function createTableHtml() {
+    let tablaHtml = `
+    <tr>
+    <th>Date</th>
+    <th>1ra Banda</th>
+    <th>2da Banda</th>
+    <th>Multiplicador</th>
+    <th>Resultado [ohm]</th>
+    </tr>`
+    
+    historyReg.forEach((item) => {
+        tablaHtml += `
+        <tr>
+        <td>${item.date.toLocaleString()}</td>
+        <td>${item.bandas[0]}</td>
+        <td>${item.bandas[1]}</td>
+        <td>${item.bandas[2]}</td>
+        <td>${item.resultado}</td>
+        </tr>`
+    })
+
+    return tablaHtml
+}
+
+// Cargo la tabla en el documento
+let table = document.getElementById('historial')
+table.innerHTML = createTableHtml()
