@@ -37,32 +37,14 @@ function saveHistory(bandas) {
         resultado: calculoResistencia(bandas)
     };
 
-    historyReg.push(data);
+    historyReg.unshift(data);
 
     if (historyReg.length > maxHistory) {
-        historyReg.shift();
+        historyReg.pop();
     }
 
     return data;
 }
-
-for (let i = 0; i < maxHistory + 2; i++) {
-
-    let userInput = prompt(`Ingrese 3 colores de la lista, separados por comas y en cualquier orden: \n${colors}\nEjemplo: marron,negro,rojo\nIngreso numero: ${i + 1}`);
-    
-    let inputArray = userInput.split(',');
-    
-    // Calcula y guarda en el historico
-    let resultado = saveHistory(inputArray);
-    
-    console.log(`Ingreso numero: ${i+1}`);
-    console.log(`Date: ${resultado.date.toLocaleString()}`);
-    console.log(`Colores ingresados: ${resultado.bandas}`);
-    console.log(`Resultado: ${resultado.resultado} [Ohm]`);    
-}
-
-console.log(`Historico de los ultimos ${maxHistory} resultados: `);
-console.log(historyReg);
 
 // Funcion que crea la tabla HTML
 function createTableHtml() {
@@ -89,6 +71,21 @@ function createTableHtml() {
     return tablaHtml
 }
 
-// Cargo la tabla en el documento
-let table = document.getElementById('historial')
-table.innerHTML = createTableHtml()
+// Funcion que levanta los valores del form en submit
+function readInput(event) {
+    event.preventDefault()
+
+    let bandas = []
+    bandas[0] = event.target[0].value
+    bandas[1] = event.target[1].value
+    bandas[2] = event.target[2].value
+    document.getElementById('resultado_res').innerText = `Resultado: ${saveHistory(bandas).resultado} [Ohm]`
+    // Cargo la tabla en el documento
+    let table = document.getElementById('historial')
+    table.innerHTML = createTableHtml()
+}
+
+let resInput = document.getElementById('res_input_form')
+resInput.addEventListener('submit', readInput)
+
+
