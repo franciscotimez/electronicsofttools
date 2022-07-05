@@ -1,21 +1,17 @@
 
 const colors = ['negro', 'marron', 'rojo', 'naranja', 'amarillo', 'verde', 'azul', 'violeta', 'gris', 'blanco'];
 const maxHistory = 5;
-let historyReg = JSON.parse(localStorage.getItem('historyEST'));
-
-if (historyReg === null) {
-    historyReg = [];
-}
+let historyReg = JSON.parse(localStorage.getItem('historyEST')) || [];
 
 // Funcion Calculadora
 // recibe String con colores.
 function calculoResistencia(bandas) {
-    let digito1 = colorToNumber(bandas[0]);
-    let digito2 = colorToNumber(bandas[1]);
-    let multiplier = colorToMultiplier(bandas[2]);
+    let { b1, b2, mult } = bandas;
+    let digito1 = colorToNumber(b1);
+    let digito2 = colorToNumber(b2);
+    let multiplier = colorToMultiplier(mult);
 
-    let resultado = ((digito1 * 10) + digito2) * multiplier;
-    return resultado;
+    return ((digito1 * 10) + digito2) * multiplier;
 }
 
 // Funcion auxiliar
@@ -26,11 +22,7 @@ function colorToNumber(color) {
 
 // Tranforma colores a multiplicadores
 function colorToMultiplier(color) {
-    let multiplier = 1;
-    for (let index = 0; index < colorToNumber(color); index++) {
-        multiplier *= 10;
-    }
-    return multiplier;
+    return 10 ** colorToNumber(color);
 }
 
 // Guardo los ultimos 10 valores calculados
@@ -41,12 +33,13 @@ function saveHistory(bandas) {
         resultado: calculoResistencia(bandas)
     };
 
+    // Agrego un elemento
     historyReg.unshift(data);
 
-    if (historyReg.length > maxHistory) {
-        historyReg.pop();
-    }
+    // Elimino un elemento si paso el maximo
+    historyReg.length > maxHistory && historyReg.pop();
 
+    // Guardo el historial
     localStorage.setItem("historyEST", JSON.stringify(historyReg));
 
     return data;
@@ -74,9 +67,9 @@ function createTableHtml() {
         tablaHtml += `
         <tr>
         <td>${item.date}</td>
-        <td>${item.bandas[0]}</td>
-        <td>${item.bandas[1]}</td>
-        <td>${item.bandas[2]}</td>
+        <td>${item.bandas.b1}</td>
+        <td>${item.bandas.b2}</td>
+        <td>${item.bandas.mult}</td>
         <td>${item.resultado}</td>
         </tr>`;
     });
@@ -103,10 +96,11 @@ function clearHTMLTable() {
 function readInput(event) {
     event.preventDefault();
 
-    let bandas = [];
-    bandas[0] = event.target[0].value;
-    bandas[1] = event.target[1].value;
-    bandas[2] = event.target[2].value;
+    let bandas = {
+        b1: event.target[0].value,
+        b2: event.target[1].value,
+        mult: event.target[2].value,
+    };
     document.getElementById('resultado_res').innerText = `Resultado: ${saveHistory(bandas).resultado} [Ohm]`;
 
     printHTMLTable();
@@ -114,12 +108,7 @@ function readInput(event) {
 
 // Ejecuciones
 // Imprimo la tabla que puede provenir del localStorage
-if (historyReg.length > 0) {
-    printHTMLTable();
-}
-else {
-    clearHTMLTable();
-}
+historyReg.length > 0 ? printHTMLTable() : clearHTMLTable();
 
 // Agrego listener para el formulario de inputs
 let resInput = document.getElementById('res_input_form');
