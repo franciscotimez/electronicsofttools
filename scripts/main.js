@@ -1,3 +1,4 @@
+const DateTime = luxon.DateTime;
 
 const colors = ['negro', 'marron', 'rojo', 'naranja', 'amarillo', 'verde', 'azul', 'violeta', 'gris', 'blanco'];
 const maxHistory = 5;
@@ -23,12 +24,12 @@ function colorToNumber(color) {
 // Tranforma colores a multiplicadores
 function colorToMultiplier(color) {
     return 10 ** colorToNumber(color);
-}
+} 
 
 // Guardo los ultimos 10 valores calculados
 function saveHistory(bandas) {
     let data = {
-        date: new Date().toLocaleString(),
+        date: DateTime.now().toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS),
         bandas: bandas,
         resultado: calculoResistencia(bandas)
     };
