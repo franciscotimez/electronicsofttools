@@ -119,3 +119,21 @@ resInput.addEventListener('submit', readInput);
 let clearBtn = document.getElementById('clearBtn');
 clearBtn.addEventListener("click", clearHistory);
 
+// Funciones para mostrar Series de valores
+async function readSerieInput(event) {
+    event.preventDefault();
+    const serie = await getResistorSerie(event.target[0].value)
+    console.log(serie);
+    document.getElementById('serie_box').innerText = `${serie.values.map(value => `${value} `)}`;
+}
+
+// Fetch async
+const getResistorSerie = async (serieName) => {
+    const res = await fetch('/serieE.json')
+    const serieE = await res.json()
+    return serieE.find(serie => serie.serieName === serieName)
+}
+
+// Agrego listener para el formulario de inputs
+let serieInput = document.getElementById('serie_res_form');
+serieInput.addEventListener('submit', readSerieInput);

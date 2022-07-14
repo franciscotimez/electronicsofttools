@@ -23,8 +23,8 @@
             <section id="resistance_calculator">
                 <h2>Calculadora de Resistencia</h2>
                 <form id="res_input_form" action="">
-                    <label for="1ra_banda">Primera banda:</label>
-                    <select name="1ra_banda" id="1ra_banda">
+                    <label for="serie_Exx">Primera banda:</label>
+                    <select name="serie_Exx" id="serie_Exx">
                         <option value="Negro">Negro</option>
                         <option value="Marron">Marron</option>
                         <option value="Rojo">Rojo</option>
@@ -66,6 +66,19 @@
                 </form>
                 <div>
                     <h3 id="resultado_res">Resultado: xxx [Ohm]</h3>
+                </div>
+                <div>
+                    <form id="serie_res_form" action="">
+                        <label for="serie_Exx">Buscar valor en serie:</label>
+                        <select name="serie_Exx" id="serie_Exx">
+                            <option value="E6">E6 (+/-20%)</option>
+                            <option value="E12">E12 (+/-10%)</option>
+                            <option value="E24">E24 (+/-5%)</option>
+                            <option value="E48">E48 (+/-2%)</option>
+                        </select>
+                        <input type="submit" value="Buscar">
+                    </form>
+                    <p id="serie_box"></p>
                 </div>
             </section>
             <section>
