@@ -315,7 +315,7 @@ function readPowerInput(event) {
 
 // Fetch async
 const getResistorSerie = async (serieName) => {
-    const res = await fetch('/serieE.json')
+    const res = await fetch('./serieE.json')
     const serieE = await res.json()
     return serieE.find(serie => serie.serieName === serieName)
 }
