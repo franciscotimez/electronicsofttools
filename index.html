@@ -15,13 +15,15 @@
             <header>
                 <nav>
                     <a href="#">ElectronicSoftTools</a>
-
                 </nav>
             </header>
         </div>
         <main>
             <section id="resistance_calculator">
                 <h2>Calculadora de Resistencia</h2>
+                <div>
+                    <img src="./resistor_color_code_chart.png" alt="Resistor - chart">
+                </div>
                 <form id="res_input_form" action="">
                     <label for="serie_Exx">Primera banda:</label>
                     <select name="serie_Exx" id="serie_Exx">
@@ -61,13 +63,23 @@
                         <option value="Violeta">Violeta</option>
                         <option value="Gris">Gris</option>
                         <option value="Blanco">Blanco</option>
+                        <option value="Dorado">Dorado</option>
+                        <option value="Plateado">Plateado</option>
+                    </select>
+                    <label for="tolerancia">Tolerancia:</label>
+                    <select name="tolerancia" id="tolerancia">
+                        <option value="Marron">Marron</option>
+                        <option value="Rojo">Rojo</option>
+                        <option value="Dorado">Dorado</option>
+                        <option value="Plateado">Plateado</option>
                     </select>
                     <input type="submit" value="Calcular">
                 </form>
                 <div>
-                    <h3 id="resultado_res">Resultado: xxx [Ohm]</h3>
+                    <h3 id="resultado_res">Su Resistor: xxx [Ohm] ±x%</h3>
                 </div>
                 <div>
+                    <h3>Buscar Reemplazo</h3>
                     <form id="serie_res_form" action="">
                         <label for="serie_Exx">Buscar valor en serie:</label>
                         <select name="serie_Exx" id="serie_Exx">
@@ -78,7 +90,14 @@
                         </select>
                         <input type="submit" value="Buscar">
                     </form>
-                    <p id="serie_box"></p>
+                    <div>
+                        <h4>Valor inferior</h4>
+                        <p id="serie_box_inf"></p>
+                    </div>
+                    <div>
+                        <h4>Valor superior</h4>
+                        <p id="serie_box_sup"></p>
+                    </div>
                 </div>
             </section>
             <section>

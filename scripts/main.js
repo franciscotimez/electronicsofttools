@@ -23,15 +23,65 @@ function colorToNumber(color) {
 
 // Tranforma colores a multiplicadores
 function colorToMultiplier(color) {
+    const specialColors = ['dorado' , 'plateado']
+    if( specialColors.includes(color.toLowerCase()) ){
+        console.log(specialColors.indexOf(color.toLowerCase()) + 1 )
+        let multiplier = 0.1 ** (specialColors.indexOf(color.toLowerCase()) + 1)
+        return multiplier
+    }
     return 10 ** colorToNumber(color);
-} 
+}
+
+function getTolerance(color) {
+    const toleranceColors = ['marron', 'rojo','dorado' , 'plateado']
+    const tolerance = [ 1, 2, 5, 10 ]
+    if( toleranceColors.includes(color.toLowerCase()) ){
+        return tolerance[toleranceColors.indexOf(color.toLowerCase())]
+    }
+}
+
+function searchReplacement(valor, valoresSerie){
+    const error = (valorReal, valorEstimado) => {
+        return (Math.abs(valorEstimado - valorReal) / valorReal) * 100
+    }
+    let valorAux = valor
+    let valorInferior = 0
+    let valorSuperior = 10
+    let multiplicador = 1
+    while(valorAux > 10){
+        valorAux /= 10;
+        multiplicador *= 10
+    }
+
+    valoresSerie.forEach((valor, index, arr) => {
+        if (valor < valorAux ){
+            valorInferior = valor
+            valorSuperior = arr[index + 1]
+        }
+    })
+
+    let data = {
+        superior: {
+            valor: valorSuperior * multiplicador,
+            error: error(valor, valorSuperior * multiplicador)
+        },
+        inferior: {
+            valor: valorInferior * multiplicador,
+            error: error(valor, valorInferior * multiplicador)
+        }
+    }
+    console.log(data)
+    return data
+
+}
 
 // Guardo los ultimos 10 valores calculados
 function saveHistory(bandas) {
     let data = {
         date: DateTime.now().toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS),
         bandas: bandas,
-        resultado: calculoResistencia(bandas)
+        resultado: calculoResistencia(bandas),
+        tolerance: getTolerance(bandas.tol)
     };
 
     // Agrego un elemento
@@ -101,8 +151,10 @@ function readInput(event) {
         b1: event.target[0].value,
         b2: event.target[1].value,
         mult: event.target[2].value,
+        tol: event.target[3].value,
     };
-    document.getElementById('resultado_res').innerText = `Resultado: ${saveHistory(bandas).resultado} [Ohm]`;
+    let result = saveHistory(bandas)
+    document.getElementById('resultado_res').innerText = `Su Resistor: ${result.resultado.toFixed(2)} [Ohm] ±${result.tolerance}%`;
 
     printHTMLTable();
 }
@@ -123,8 +175,10 @@ clearBtn.addEventListener("click", clearHistory);
 async function readSerieInput(event) {
     event.preventDefault();
     const serie = await getResistorSerie(event.target[0].value)
-    console.log(serie);
-    document.getElementById('serie_box').innerText = `${serie.values.map(value => `${value} `)}`;
+    const valores = searchReplacement( historyReg[0].resultado, serie.values )
+    console.log("Histpry:", historyReg[0]);
+    document.getElementById('serie_box_sup').innerText = `Valor: ${valores.superior.valor} [Ohm] -> error ${valores.superior.error.toFixed()}[%]`;
+    document.getElementById('serie_box_inf').innerText = `Valor: ${valores.inferior.valor} [Ohm] -> error ${valores.inferior.error.toFixed()}[%]`;
 }
 
 // Fetch async
