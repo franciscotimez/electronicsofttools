@@ -1,1 +1,237 @@
 // Include any default variable overrides here (though functions won't be available)
+/* Reset style Browser */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
+    width: 100vw;
+    height: 4rem;
+    background-color: silver;
+    margin: 0;
+    padding: 0px;
+
+    nav{
+        margin: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div {
+            height: 100%;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            a{
+                height: 100%;
+                width: 100%;
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: lightgrey;
+                color: black;
+                text-decoration: none;
+                margin: 0;
+                padding: 0 20px;
+
+            }
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: baseline;
+    justify-content: center;
+    border: 2px solid grey;
+    border-radius: 25px;
+    padding: 30px;
+    margin: 10px 0px;
+
+    h2 {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    h3 {
+        width: 100%;
+        margin-bottom: 0;
+    }
+}
+
+.negro,
+option[value="negro"] {
+    background-color: black;
+    color: white;
+}
+
+.marron,
+option[value="marron"] {
+    background-color: saddlebrown;
+}
+
+.rojo,
+option[value="rojo"] {
+    background-color: red;
+}
+
+.naranja,
+option[value="naranja"] {
+    background-color: darkorange;
+}
+
+.amarillo,
+option[value="amarillo"] {
+    background-color: yellow;
+}
+
+.verde,
+option[value="verde"] {
+    background-color: green;
+}
+
+.azul,
+option[value="azul"] {
+    background-color: blue;
+}
+
+.violeta,
+option[value="violeta"] {
+    background-color: darkviolet;
+}
+
+.gris,
+option[value="gris"] {
+    background-color: grey;
+}
+
+.blanco,
+option[value="blanco"] {
+    background-color: white;
+}
+
+.dorado,
+option[value="dorado"] {
+    background-color: goldenrod;
+}
+
+.plateado,
+option[value="plateado"] {
+    background-color: silver;
+}
+
+#res_input_form {
+    width: 100%;
+
+    input,
+    select{
+        width: 19%;
+        border: 1px solid lightgrey;
+        padding: 4px;
+    }
+    label {
+        display: none;
+    }
+
+}
+
+#power_box,
+#resultado_res {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#serie_res_form {
+    select,
+    input{
+        width: 23%;
+        border: 1px solid lightgrey;
+        padding: 4px;
+    }
+    
+    #serie_valor {
+        width: 13%;
+    }
+}
+
+.serieResult {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 49%;
+        text-align: center;
+        padding: 6px;
+        margin: 10px 2px 0 2px;
+
+        h3 {
+            margin: 0;
+        }
+        h4 {
+            margin: 0;
+        }
+        h5 {
+            margin: 0;
+        }
+    }
+    
+    .best {
+        background-color: gold;
+    }
+
+    .worst {
+        background-color: indianred;
+    }
+
+    .real {
+        background-color: mediumseagreen;
+   }
+}
+
+#resistance_power {
+    select,
+    input{
+        width: 19%;
+        border: 1px solid lightgrey;
+        padding: 4px;
+    }
+}
+
+#resistance_history {
+    table {
+        table-layout: fixed;
+        width: 100%;
+
+        td {
+            text-align: center;
+            p{
+                margin: 0;
+                padding: 0;
+                display: inline-block;
+                min-width: 1.5rem;
+                height: 1rem;
+            }
+        }
+    }
+}
