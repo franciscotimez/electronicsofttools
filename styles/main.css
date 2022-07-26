@@ -126,12 +126,12 @@ option[value="plateado"] {
 
 #serie_res_form select,
 #serie_res_form input {
-  width: 23%;
+  width: 22%;
   border: 1px solid lightgrey;
   padding: 4px; }
 
 #serie_res_form #serie_valor {
-  width: 13%; }
+  width: 11%; }
 
 .serieResult {
   width: 100%;
@@ -175,3 +175,13 @@ option[value="plateado"] {
       display: inline-block;
       min-width: 1.5rem;
       height: 1rem; }
+
+#resistance_history #clearBtn {
+  border: 1px solid lightgrey;
+  padding: 4px; }
+
+.none {
+  display: none; }
+
+.inlineBlock {
+  display: inline-block; }

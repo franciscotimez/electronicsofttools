@@ -248,6 +248,7 @@ function createTableHtml() {
 
     let table = document.getElementById('historial');
     table.innerHTML = tablaHtml;
+    document.getElementById('clearBtn').className = "inlineBlock"
 }
 
 /**
@@ -257,6 +258,7 @@ function clearHTMLTable() {
     // Cargo la tabla en el documento
     let table = document.getElementById('historial');
     table.innerHTML = "";
+    document.getElementById('clearBtn').className = "none"
 }
 
 /**
