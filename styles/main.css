@@ -126,12 +126,13 @@ option[value="plateado"] {
 
 #serie_res_form select,
 #serie_res_form input {
-  width: 22%;
+  width: 24%;
   border: 1px solid lightgrey;
   padding: 4px; }
 
+#serie_res_form input[type="submit"],
 #serie_res_form #serie_valor {
-  width: 11%; }
+  width: 15%; }
 
 .serieResult {
   width: 100%;

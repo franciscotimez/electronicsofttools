@@ -275,7 +275,7 @@ function readBandasInput(event) {
         tol: event.target[3].value,
     };
     let result = saveHistory(bandas);
-    document.getElementById('resultado_res').innerHTML = `<h3>Resistor: ${fixToHumanreadable(result.resultado)} [Ohm] ± ${result.tolerance} %</h3>`;
+    document.getElementById('resultado_res').innerHTML = `<h3>Valor Nominal: ${fixToHumanreadable(result.resultado)} [Ohm] ± ${result.tolerance} %</h3>`;
     document.getElementById('serie_valor').value = fixToHumanreadable(result.resultado);
     document.getElementById('power_valor_res').value = fixToHumanreadable(result.resultado);
     createTableHtml();
@@ -298,12 +298,12 @@ async function readSerieInput(event) {
         realContainer.className = "real";
 
         if (valores.inferior.error < valores.superior.error) {
-            classInf = valores.inferior.error == 0 ? "real" : "best";
+            classInf = valores.inferior.error <= 0.1 ? "real" : "best";
             classSup = "worst";
         }
         else {
             classInf = "worst";
-            classSup = valores.superior.error == 0 ? "real" : "best";
+            classSup = valores.superior.error <= 0.1 ? "real" : "best";
         }
 
         let infContainer = document.getElementById('serie_box_inf');
